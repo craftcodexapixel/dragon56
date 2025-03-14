@@ -158,10 +158,8 @@
       <option value="Commission">Commission</option>
     </select>
 
-    <textarea name="Description" id="desc" rows="4" placeholder="Describe your request (optional, max 300 characters)"></textarea>
+    <textarea name="Description" id="desc" rows="4" placeholder="Describe your request"></textarea>
     <div class="char-counter" id="counter">0/300 characters</div>
-
-    <input type="hidden" name="Payment Status" value="Pending">
 
     <button type="submit">
       <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="paypal-logo">
@@ -200,23 +198,20 @@
     });
 
     // Disable Button after Submit + Confirmation + Redirect + Progress Bar
-    form.addEventListener("submit", function (e) {
-      // Confirmation popup
-      if (!confirm("Please enter the same name you have on your PayPal/card, so we can identify your payment. Proceed?")) {
-        e.preventDefault();
-        return;
-      }
+form.addEventListener("submit", function (e) {
+  if (!confirm("Please enter the same name you have on your PayPal/card, so we can identify your payment. Proceed?")) {
+    e.preventDefault();
+    return;
+  }
 
-      // Button loading state and progress bar
-      btn.disabled = true;
-      btn.innerHTML = '<img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="paypal-logo">Submitting...';
-      progressBar.style.width = '100%';
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
 
-      // Redirect to PayPal after slight delay (for form submit)
-      setTimeout(function () {
-        window.location.href = "https://www.paypal.com/paypalme/Au779/50"; // ✅ Your real PayPal link
-      }, 2000);
-    });
+  // Delay redirect for form to be sent properly
+  setTimeout(function () {
+    window.location.href = "https://www.paypal.com/paypalme/Au779/50"; // Your actual PayPal link
+  }, 3000); // Delay can be adjusted
+});
   </script>
 
 </body>

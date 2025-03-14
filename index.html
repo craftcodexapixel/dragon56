@@ -1,230 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DragonMountain56 - Get Sponsored or Commissioned</title>
+  <title>Get Sponsored or Commissioned</title>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #222;
+      --card-bg: white;
+      --input-bg: #f0f0f0;
+      --accent: #0070BA;
+      --button-bg: #FFC439;
+      --button-hover: #FFB347;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
+      --input-bg: #2c2c2c;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      transition: background 0.3s, color 0.3s;
     }
 
     body {
-      background: linear-gradient(135deg, #8E2DE2, #4A00E0);
-      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       padding: 20px;
+      position: relative;
     }
 
-    .container {
-      background: white;
+    form {
+      background: var(--card-bg);
       padding: 30px;
-      border-radius: 20px;
-      max-width: 500px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      max-width: 420px;
       width: 100%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1.2s ease;
+      position: relative;
     }
 
     h2 {
-      text-align: center;
       margin-bottom: 20px;
-      color: #333;
-    }
-
-    p {
       text-align: center;
-      margin-bottom: 25px;
-      color: #666;
-      font-size: 14px;
     }
 
-    input, select, textarea, button {
+    input,
+    select,
+    textarea {
       width: 100%;
       padding: 14px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
+      margin: 12px 0;
       border-radius: 10px;
-      font-size: 15px;
+      border: 2px solid transparent;
+      background: var(--input-bg);
+      color: var(--text-color);
+      font-size: 16px;
     }
 
-    input:focus, select:focus, textarea:focus {
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
       outline: none;
-      border-color: #8E2DE2;
-      box-shadow: 0 0 8px rgba(142, 45, 226, 0.3);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
     }
 
     button {
-      background: #8E2DE2;
-      color: white;
+      width: 100%;
+      padding: 14px;
+      background: var(--button-bg);
+      color: black;
       border: none;
-      font-weight: 600;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 17px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     button:hover {
-      background: #4A00E0;
+      background: var(--button-hover);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
 
-    footer {
-      text-align:bottom;
-      margin-top: 10px;
-      color: white;
-      font-size: 13px;
+    img.paypal-logo {
+      height: 22px;
     }
 
-    @media (max-width: 500px) {
-      h2 { font-size: 22px; }
-      input, select, textarea, button { font-size: 14px; padding: 12px; }
+    .char-counter {
+      text-align: right;
+      font-size: 12px;
+      margin: -10px 0 8px;
     }
-    #progressBar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
 
-.step {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #ccc;
-  text-align: center;
-  line-height: 25px;
-  color: white;
-  font-weight: bold;
-}
+    .theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 14px;
+      background: var(--button-bg);
+      padding: 6px 10px;
+      border-radius: 20px;
+      color: black;
+    }
 
-.step.active {
-  background: #4A00E0;
-}
-
-.line {
-  width: 50px;
-  height: 4px;
-  background: #ccc;
-}
-
-.step.active + .line {
-  background: #4A00E0;
-}
-body.dark {
-  background: #222;
-  color: #fff;
-}
-
-body.dark input, body.dark textarea, body.dark select {
-  background: #333;
-  color: #fff;
-  border-color: #555;
-}
-
-body.dark button {
-  background: #666;
-}
-
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.3s ease;
+      z-index: 999;
+    }
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h2>Dragon Mountain 56 - Low budget Artist</h2>
-    <p>Fill this form to request a sponsorship or commission. You'll be redirected to payment after submission.</p>
+  <div class="progress-bar" id="progressBar"></div>
 
-<button onclick="document.body.classList.toggle('dark')">Dark Mode🌙</button>
+  <form action="https://formsubmit.co/artistofwindows10@gmail.com" method="POST" id="creatorForm">
+    <div class="theme-toggle" id="themeToggle">🌙 Dark Mode</div>
 
+    <h2>Get Sponsored / Commissioned</h2>
 
-<div id="progressBar">
-  <div class="step active">1</div>
-  <div class="line"></div>
-  <div class="step">2</div>
-</div>
+    <input type="text" name="Name" placeholder="Your Full Name" required>
+    <input type="email" name="Email" placeholder="Your Email Address" required>
+    <input type="text" name="Phone" placeholder="Your Phone Number" required>
+    <input type="text" name="Country" placeholder="Your Country" required>
 
-    <!-- Form submission via FormSubmit -->
-    <form action="https://formsubmit.co/artistofwindows10@gmail.com" method="POST">
-      
-      <input type="text" name="Name" placeholder="Your Full Name" required>
-      <input type="email" name="Email" placeholder="Your Email Address" required>
-      <input type="tel" name="Phone" placeholder="Your Phone Number" required>
-      <input type="text" name="Country" placeholder="Your Country" required>
+    <select name="Type" required>
+      <option value="" disabled selected>Choose Sponsorship Type</option>
+      <option value="Sponsorship">Sponsorship</option>
+      <option value="Commission">Commission</option>
+    </select>
 
-      <select name="Type" required>
-        <option value="" disabled selected>Select Sponsorship/Commission Type</option>
-        <option value="Sponsorship">Sponsorship</option>
-        <option value="Commission">Commission</option>
-      </select>
+    <textarea name="Description" id="desc" rows="4" placeholder="Describe your request (optional, max 300 characters)"></textarea>
+    <div class="char-counter" id="counter">0/300 characters</div>
 
-      <textarea name="Description" placeholder="Describe what you need..." required></textarea>
+    <input type="hidden" name="Payment Status" value="Pending">
 
-      <!-- Hidden FormSubmit fields -->
-      <input type="hidden" name="_next" value="https://buy.stripe.com/test_7sIcPp0RI05fguI000"> <!-- Payment link -->
-      <input type="hidden" name="_captcha" value="false"> <!-- Optional: disable captcha -->
-      <input type="hidden" name="_subject" value="💥 New Sponsorship/Commission Request Received!">
-      <input type="hidden" name="_template" value="table"> <!-- Email in nice table format -->
+    <button type="submit">
+      <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="paypal-logo">
+      Submit & Pay with PayPal
+    </button>
+  </form>
 
-      <button type="submit">Submit & Continue to Payment 💳</button>
-    </br>
-     <p>  © 2025 | Low Budget Artist. All rights reserved.</p>
-    </form>
-  </div>
+  <script>
+    const form = document.querySelector("#creatorForm");
+    const desc = document.querySelector("#desc");
+    const counter = document.querySelector("#counter");
+    const btn = document.querySelector("button[type='submit']");
+    const themeToggle = document.querySelector("#themeToggle");
+    const progressBar = document.querySelector("#progressBar");
 
-<script>
-  document.querySelector("form").addEventListener("submit", function (e) {
-  let email = document.querySelector('input[name="Email"]');
-  if (!email.value.includes("@")) {
-    e.preventDefault();
-    alert("Please enter a valid email address!");
-  }
-});
+    // Dark mode toggle
+    themeToggle.addEventListener("click", () => {
+      if (document.documentElement.getAttribute("data-theme") === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        themeToggle.textContent = "🌙 Dark Mode";
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeToggle.textContent = "☀️ Light Mode";
+      }
+    });
 
-const desc = document.querySelector('textarea[name="Description"]');
-const counter = document.createElement('div');
-counter.style.textAlign = "right";
-counter.style.fontSize = "12px";
-counter.style.color = "#555";
-desc.parentNode.insertBefore(counter, desc.nextSibling);
+    // Character Counter with Limit
+    desc.addEventListener('input', () => {
+      counter.textContent = `${desc.value.length}/300 characters`;
+      if (desc.value.length > 300) {
+        desc.value = desc.value.slice(0, 300);
+        counter.textContent = `300/300 characters (Max reached)`;
+      }
+    });
 
-desc.addEventListener('input', () => {
-  counter.textContent = `${desc.value.length}/300 characters`;
-  if (desc.value.length > 300) {
-    desc.value = desc.value.slice(0, 300);
-    counter.textContent = `300/300 characters (Max reached)`;
-  }
-});
+    // Disable Button after Submit + Confirmation + Redirect + Progress Bar
+    form.addEventListener("submit", function (e) {
+      // Confirmation popup
+      if (!confirm("Please enter the same name you have on your PayPal/card, so we can identify your payment. Proceed?")) {
+        e.preventDefault();
+        return;
+      }
 
-document.querySelector("form").addEventListener("submit", function (e) {
-  if (!confirm("Please Enter the name You have on your card so it will be easy to us to identify your payment......")) {
-    e.preventDefault();
-  }
-});
+      // Button loading state and progress bar
+      btn.disabled = true;
+      btn.innerHTML = '<img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="paypal-logo">Submitting...';
+      progressBar.style.width = '100%';
 
-document.querySelector("form").addEventListener("submit", function () {
-  const btn = document.querySelector("button[type='submit']");
-  btn.disabled = true;
-  btn.textContent = "Submitting...";
-});
-
-</script>
-
+      // Redirect to PayPal after slight delay (for form submit)
+      setTimeout(function () {
+        window.location.href = "https://www.paypal.com/paypalme/Au779/50"; // ✅ Your real PayPal link
+      }, 2000);
+    });
+  </script>
 
 </body>
 </html>
